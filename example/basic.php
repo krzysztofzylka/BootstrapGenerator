@@ -20,7 +20,19 @@
         . BootstrapGenerator::button('Button')
         . BootstrapGenerator::button('Button2')->size(Size::Sm)
         . BootstrapGenerator::button('Button3')->size(Size::Sm)->disable()
-        . BootstrapGenerator::button('Button4')->size(Size::Sm)->badge('5');
-
+        . BootstrapGenerator::button('Button4')->size(Size::Sm)->badge('5')
+        . BootstrapGenerator::buttonGroup()
+            ->addButton(BootstrapGenerator::button('a'))
+            ->addButton(BootstrapGenerator::button('b'))
+            ->addButton(BootstrapGenerator::button('c'))
+        . BootstrapGenerator::card('text')
+            ->attribute('style', 'width: 500px')
+            ->attribute('class', 'm-2')
+            ->title('Title')
+            ->subTitle('sub-title')
+            ->topImage('https://dummyimage.com/500x200/000/fff')
+            ->addLink('link1')
+            ->header('header')
+            ->footer('footer');
     ?>
 </div>

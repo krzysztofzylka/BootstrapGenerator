@@ -20,7 +20,7 @@ class BreadcrumbTag extends Tag {
      * Add breadcrumb
      * @param string $value
      * @param bool $active
-     * @param string $href
+     * @param ?string $href
      * @return $this
      */
     public function addBreadcrumb(string $value, bool $active = false, ?string $href = null) : BreadcrumbTag {

@@ -7,7 +7,9 @@ use krzysztofzylka\BootstrapGenerator\enum\ThemeColor;
 use krzysztofzylka\BootstrapGenerator\tag\AlertTag;
 use krzysztofzylka\BootstrapGenerator\tag\BadgeTag;
 use krzysztofzylka\BootstrapGenerator\tag\BreadcrumbTag;
+use krzysztofzylka\BootstrapGenerator\tag\ButtonGroupTag;
 use krzysztofzylka\BootstrapGenerator\tag\ButtonTag;
+use krzysztofzylka\BootstrapGenerator\tag\CardTag;
 use krzysztofzylka\HtmlGenerator\Tag;
 
 class BootstrapGenerator {
@@ -56,6 +58,23 @@ class BootstrapGenerator {
             ->value($value)
             ->attribute('class', 'btn btn-' . $themeColor->value)
             ->attribute('role', 'button');
+    }
+
+    /**
+     * Create button group
+     * @return ButtonGroupTag
+     */
+    public static function buttonGroup() : ButtonGroupTag {
+        return (new ButtonGroupTag());
+    }
+
+    /**
+     * Create card
+     * @param string|null $value
+     * @return CardTag
+     */
+    public static function card(?string $value = null) : CardTag {
+        return (new CardTag())->value($value);
     }
 
 }
