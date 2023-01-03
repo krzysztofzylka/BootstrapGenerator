@@ -10,7 +10,6 @@ use krzysztofzylka\BootstrapGenerator\tag\BreadcrumbTag;
 use krzysztofzylka\BootstrapGenerator\tag\ButtonGroupTag;
 use krzysztofzylka\BootstrapGenerator\tag\ButtonTag;
 use krzysztofzylka\BootstrapGenerator\tag\CardTag;
-use krzysztofzylka\HtmlGenerator\Tag;
 
 class BootstrapGenerator {
 
