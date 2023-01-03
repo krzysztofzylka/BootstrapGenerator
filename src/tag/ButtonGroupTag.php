@@ -10,8 +10,8 @@ class ButtonGroupTag extends Tag {
 
     public function __construct() {
         parent::__construct('div');
-        $this->attribute('class', 'btn-group');
-        $this->attribute('role', 'group');
+
+        $this->class('btn-group')->attribute('role', 'group');
     }
 
     /**

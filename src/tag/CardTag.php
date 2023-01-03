@@ -16,7 +16,7 @@ class CardTag extends Tag {
 
     public function __construct() {
         parent::__construct('div');
-        $this->attribute('class', 'card');
+        $this->class('card');
     }
 
     /**
@@ -92,16 +92,16 @@ class CardTag extends Tag {
 
     public function __toString(): string {
         $text = $this->getValue();
-        $value = (isset($this->header) ? Html::tag('div', $this->header)->attribute('class', 'card-header') : '')
-            . (isset($this->topImage) ? Html::img($this->topImage['src'])->alt($this->topImage['alt'])->attribute('class', 'card-img-top') : '')
+        $value = (isset($this->header) ? Html::tag('div', $this->header)->class('card-header') : '')
+            . (isset($this->topImage) ? Html::img($this->topImage['src'])->alt($this->topImage['alt'])->class('card-img-top') : '')
             . Html::tag(
                 'div',
-                (isset($this->title) ? Html::tag('h5', $this->title)->attribute('class', 'card-title') : '')
-                    . (isset($this->subTitle) ? Html::tag('h6', $this->title)->attribute('class', 'card-subtitle mb-2 text-muted') : '')
-                    . Html::tag('p', $text)->attribute('class', 'card-text')
+                (isset($this->title) ? Html::tag('h5', $this->title)->class('card-title') : '')
+                    . (isset($this->subTitle) ? Html::tag('h6', $this->title)->class('card-subtitle mb-2 text-muted') : '')
+                    . Html::tag('p', $text)->class('card-text')
                     . implode('', $this->cardLinks)
-            )->attribute('class', 'card-body')
-            . (isset($this->footer) ? Html::tag('div', $this->footer)->attribute('class', 'card-footer') : '');
+            )->class('card-body')
+            . (isset($this->footer) ? Html::tag('div', $this->footer)->class('card-footer') : '');
 
         $this->value($value);
 
