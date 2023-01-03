@@ -11,9 +11,7 @@ class BadgeTag extends Tag {
      * @return BadgeTag
      */
     public function roundedPill() : BadgeTag {
-        $this->attribute('class', 'rounded-pill');
-
-        return $this;
+        return $this->class('rounded-pill');
     }
 
 }

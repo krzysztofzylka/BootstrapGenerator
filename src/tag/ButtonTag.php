@@ -2,7 +2,6 @@
 
 namespace krzysztofzylka\BootstrapGenerator\tag;
 
-use krzysztofzylka\BootstrapGenerator\BootstrapGenerator;
 use krzysztofzylka\BootstrapGenerator\enum\BackgroundColor;
 use krzysztofzylka\BootstrapGenerator\enum\Size;
 use krzysztofzylka\HtmlGenerator\Html;
@@ -29,9 +28,7 @@ class ButtonTag extends Tag {
      * @return ButtonTag
      */
     public function size(Size $size) : ButtonTag {
-        $this->attribute('class', 'btn-' . $size->value);
-
-        return $this;
+        return $this->attribute('class', 'btn-' . $size->value);
     }
 
     /**
@@ -39,11 +36,9 @@ class ButtonTag extends Tag {
      * @return ButtonTag
      */
     public function disable() : ButtonTag {
-        $this->attribute('disabled', 'disabled')
-            ->attribute('aria-disabled', 'true')
-            ->attribute('class', 'disabled');
-
-        return $this;
+        return $this->attribute('disabled')
+            ->class('disabled')
+            ->attribute('aria-disabled', 'true');
     }
 
     /**
@@ -65,9 +60,9 @@ class ButtonTag extends Tag {
         $value = $this->getValue();
 
         if (isset($this->badge)) {
-            $value .= Html::tag('span', $this->badge['value'])->attribute('class', 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-' . $this->badge['background']);
+            $value .= Html::tag('span', $this->badge['value'])->class('position-absolute top-0 start-100 translate-middle badge rounded-pill bg-' . $this->badge['background']);
 
-            $this->attribute('class', 'position-relative');
+            $this->class('position-relative');
         }
 
         $this->value($value);

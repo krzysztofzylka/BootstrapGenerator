@@ -35,10 +35,7 @@ class AlertTag extends Tag {
         $value = $this->getValue();
 
         if (isset($this->header)) {
-            $value = (new Tag($this->headerTag))
-                    ->value($this->header)
-                    ->attribute('class', 'alert-heading')
-                . $value;
+            $value = (new Tag($this->headerTag))->value($this->header)->class('alert-heading') . $value;
         }
 
         $this->value($value);

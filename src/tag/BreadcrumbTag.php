@@ -20,7 +20,7 @@ class BreadcrumbTag extends Tag {
      * Add breadcrumb
      * @param string $value
      * @param bool $active
-     * @param string $href
+     * @param ?string $href
      * @return $this
      */
     public function addBreadcrumb(string $value, bool $active = false, ?string $href = null) : BreadcrumbTag {
@@ -37,19 +37,16 @@ class BreadcrumbTag extends Tag {
                 $breadcrumb['value'] = Html::a($breadcrumb['value'], $breadcrumb['href']);
             }
 
-            $breadCrumbTag = Html::tag('li', $breadcrumb['value'])
-                ->attribute('class', 'breadcrumb-item');
+            $breadCrumbTag = Html::tag('li', $breadcrumb['value'])->class('breadcrumb-item');
 
             if ($breadcrumb['active']) {
-                $breadCrumbTag
-                    ->attribute('class', 'active')
-                    ->attribute('aria-current', 'page');
+                $breadCrumbTag->class('active')->attribute('aria-current', 'page');
             }
 
             $breadcrumbs .= $breadCrumbTag;
         }
 
-        $this->value(Html::tag('ol')->attribute('class', 'breadcrumb')->value($breadcrumbs));
+        $this->value(Html::tag('ol')->class('breadcrumb')->value($breadcrumbs));
 
         return parent::__toString();
     }
