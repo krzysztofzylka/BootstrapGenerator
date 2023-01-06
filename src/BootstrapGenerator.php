@@ -11,6 +11,7 @@ use krzysztofzylka\BootstrapGenerator\tag\ButtonGroupTag;
 use krzysztofzylka\BootstrapGenerator\tag\ButtonTag;
 use krzysztofzylka\BootstrapGenerator\tag\CardTag;
 use krzysztofzylka\BootstrapGenerator\tag\DropdownTag;
+use krzysztofzylka\BootstrapGenerator\tag\PaginationTag;
 
 class BootstrapGenerator {
 
@@ -85,6 +86,17 @@ class BootstrapGenerator {
      */
     public static function dropdown(string $value, ThemeColor $themeColor = ThemeColor::Secondary) : DropdownTag {
         return (new DropdownTag())->value($value)->theme($themeColor);
+    }
+
+    /**
+     * Create pagination
+     * @param int $pages
+     * @param string $href link with {page}
+     * @param ?int $actualPage
+     * @return PaginationTag
+     */
+    public static function pagination(int $pages, string $href, ?int $actualPage = null) : PaginationTag {
+        return (new PaginationTag())->setPages($pages)->href($href)->actualPage($actualPage);
     }
 
 }

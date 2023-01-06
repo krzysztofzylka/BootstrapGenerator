@@ -41,6 +41,7 @@
             ->addHeader('header')
             ->addLink('item', '#', Option::Disabled)
             ->addSeparator()
-            ->addLink('item', '#');
+            ->addLink('item', '#')
+        . BootstrapGenerator::pagination(55, '?page={page}', $_GET['page'] ?? 1);
     ?>
 </div>
