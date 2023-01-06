@@ -10,6 +10,7 @@ use krzysztofzylka\BootstrapGenerator\tag\BreadcrumbTag;
 use krzysztofzylka\BootstrapGenerator\tag\ButtonGroupTag;
 use krzysztofzylka\BootstrapGenerator\tag\ButtonTag;
 use krzysztofzylka\BootstrapGenerator\tag\CardTag;
+use krzysztofzylka\BootstrapGenerator\tag\DropdownTag;
 
 class BootstrapGenerator {
 
@@ -69,11 +70,21 @@ class BootstrapGenerator {
 
     /**
      * Create card
-     * @param string|null $value
+     * @param ?string $value
      * @return CardTag
      */
     public static function card(?string $value = null) : CardTag {
         return (new CardTag())->value($value);
+    }
+
+    /**
+     * Create dropdown
+     * @param string $value
+     * @param ThemeColor $themeColor
+     * @return DropdownTag
+     */
+    public static function dropdown(string $value, ThemeColor $themeColor = ThemeColor::Secondary) : DropdownTag {
+        return (new DropdownTag())->value($value)->theme($themeColor);
     }
 
 }

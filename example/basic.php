@@ -7,6 +7,7 @@
 
     use krzysztofzylka\BootstrapGenerator\BootstrapGenerator;
     use krzysztofzylka\BootstrapGenerator\enum\BackgroundColor;
+    use krzysztofzylka\BootstrapGenerator\enum\Option;
     use krzysztofzylka\BootstrapGenerator\enum\Size;
     use krzysztofzylka\BootstrapGenerator\enum\ThemeColor;
     use krzysztofzylka\HtmlGenerator\Html;
@@ -33,6 +34,13 @@
             ->topImage('https://dummyimage.com/500x200/000/fff')
             ->addLink('link1')
             ->header('header')
-            ->footer('footer');
+            ->footer('footer')
+        . BootstrapGenerator::dropdown('Dropdown')
+            ->addLink('item', '#', Option::Disabled, Option::Active)
+            ->addLink('item', '#', Option::Active)
+            ->addHeader('header')
+            ->addLink('item', '#', Option::Disabled)
+            ->addSeparator()
+            ->addLink('item', '#');
     ?>
 </div>
