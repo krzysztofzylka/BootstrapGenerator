@@ -43,7 +43,7 @@ class DropdownTag extends Tag {
      * Add dropdown link
      * @param string $value
      * @param string $href
-     * @param Option ...$options
+     * @param Option ...$options Disabled / Active
      * @return DropdownTag
      */
     public function addLink(string $value, string $href = '#', Option ...$options) : DropdownTag {
