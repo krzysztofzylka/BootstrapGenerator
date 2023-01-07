@@ -13,8 +13,24 @@ class NavbarTag extends Tag {
 
     private Tag $brand;
     private array $elements = [];
+    private array $endElements = [];
+    private string $position = 'left';
     private string $id = 'navbar';
     private Size $navbarExpendSize = Size::Md;
+
+    /**
+     * Construct
+     * @param BackgroundColor|null $backgroundColor
+     */
+    public function __construct(?BackgroundColor $backgroundColor = BackgroundColor::BodyTertiary) {
+        parent::__construct('nav');
+
+        $this->class('navbar');
+
+        if (!is_null($backgroundColor)) {
+            $this->class('bg-' . $backgroundColor->value);
+        }
+    }
 
     /**
      * Add brand
@@ -44,6 +60,17 @@ class NavbarTag extends Tag {
     }
 
     /**
+     * Set position
+     * @param string $position left / right
+     * @return $this
+     */
+    public function setPosition(string $position = 'left') : NavbarTag {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
      * Add link
      * @param string $value
      * @param string $href
@@ -61,21 +88,26 @@ class NavbarTag extends Tag {
             $link->class('disabled')->clearAttribute('href');
         }
 
-        $this->elements[] = $link;
+        $this->_addElement($link);
 
         return $this;
     }
 
-    public function __construct(?BackgroundColor $backgroundColor = BackgroundColor::BodyTertiary) {
-        parent::__construct('nav');
+    /**
+     * Add text
+     * @param string $value
+     * @return $this
+     */
+    public function addText(string $value) : NavbarTag {
+        $this->_addElement(Html::span($value)->class('navbar-text'));
 
-        $this->class('navbar');
-
-        if (!is_null($backgroundColor)) {
-            $this->class('bg-' . $backgroundColor->value);
-        }
+        return $this;
     }
 
+    /**
+     * Create html string
+     * @return string
+     */
     public function __toString() : string {
         $this->class('navbar-expand-' . $this->navbarExpendSize->value);
 
@@ -85,6 +117,7 @@ class NavbarTag extends Tag {
                     . $this->_generatePhoneButton()
                     . Html::div(
                         Html::div(implode('', $this->elements))->class('navbar-nav')
+                            . Html::div(implode('', $this->endElements))->class('navbar-nav ms-auto')
                     )->class('collapse navbar-collapse')->id($this->id)
             )
         );
@@ -105,6 +138,21 @@ class NavbarTag extends Tag {
             ->aria('controls', $this->id)
             ->aria('expanded', 'false')
             ->aria('label', 'Toggle navigation');
+    }
+
+    /**
+     * Add element
+     * @param $element
+     * @return void
+     */
+    private function _addElement($element) : void {
+        if ($this->position === 'right') {
+            $this->endElements[] = (string)$element;
+
+            return;
+        }
+
+        $this->elements[] = (string)$element;
     }
 
 }

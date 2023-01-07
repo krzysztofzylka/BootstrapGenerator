@@ -11,6 +11,8 @@
             ->addLink('Home', '#', \krzysztofzylka\BootstrapGenerator\enum\Option::Active)
             ->addLink('Page1')
             ->addLink('Page disabled', '#', \krzysztofzylka\BootstrapGenerator\enum\Option::Disabled)
+            ->setPosition('right')
+            ->addText('Right text :)')
         ;
     ?>
 </div>
