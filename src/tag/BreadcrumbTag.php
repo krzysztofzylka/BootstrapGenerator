@@ -2,6 +2,7 @@
 
 namespace krzysztofzylka\BootstrapGenerator\tag;
 
+use krzysztofzylka\BootstrapGenerator\enum\BreadcrumbDivider;
 use krzysztofzylka\HtmlGenerator\Html;
 use krzysztofzylka\HtmlGenerator\Tag;
 
@@ -14,6 +15,27 @@ class BreadcrumbTag extends Tag {
         $this->attribute('aria-label', 'breadcrumb');
 
         parent::__construct('nav');
+    }
+
+    /**
+     * Change divider
+     * @param BreadcrumbDivider $divider
+     * @return BreadcrumbTag
+     */
+    public function divider(BreadcrumbDivider $divider) : BreadcrumbTag {
+        switch ($divider) {
+            case BreadcrumbDivider::Slash:
+                $this->clearAttribute('style');
+                break;
+            case BreadcrumbDivider::None:
+                $this->attribute('style', "--bs-breadcrumb-divider: '';", true);
+                break;
+            case BreadcrumbDivider::Arrow:
+                $this->attribute('style', "--bs-breadcrumb-divider: '>';", true);
+                break;
+        }
+
+        return $this;
     }
 
     /**
