@@ -4,6 +4,7 @@ namespace krzysztofzylka\BootstrapGenerator\tag;
 
 use krzysztofzylka\BootstrapGenerator\BootstrapGenerator;
 use krzysztofzylka\BootstrapGenerator\enum\BackgroundColor;
+use krzysztofzylka\BootstrapGenerator\enum\Option;
 use krzysztofzylka\BootstrapGenerator\enum\Size;
 use krzysztofzylka\HtmlGenerator\Html;
 use krzysztofzylka\HtmlGenerator\Tag;
@@ -42,6 +43,29 @@ class NavbarTag extends Tag {
         return $this;
     }
 
+    /**
+     * Add link
+     * @param string $value
+     * @param string $href
+     * @param Option ...$options Active, Disabled
+     * @return NavbarTag
+     */
+    public function addLink(string $value, string $href = '#', Option ...$options) : NavbarTag {
+        $link = Html::a($value, $href)->class('nav-link');
+
+        if (in_array(Option::Active, $options)) {
+            $link->class('active')->aria('current', 'page');
+        }
+
+        if (in_array(Option::Disabled, $options)) {
+            $link->class('disabled')->clearAttribute('href');
+        }
+
+        $this->elements[] = $link;
+
+        return $this;
+    }
+
     public function __construct(?BackgroundColor $backgroundColor = BackgroundColor::BodyTertiary) {
         parent::__construct('nav');
 
@@ -53,14 +77,15 @@ class NavbarTag extends Tag {
     }
 
     public function __toString() : string {
-        $value = implode('', $this->elements);
         $this->class('navbar-expand-' . $this->navbarExpendSize->value);
 
         $this->value(
             BootstrapGenerator::containerFluid(
                 $this->brand
                     . $this->_generatePhoneButton()
-                    . Html::div($value)->class('collapse navbar-collapse')->id($this->id)
+                    . Html::div(
+                        Html::div(implode('', $this->elements))->class('navbar-nav')
+                    )->class('collapse navbar-collapse')->id($this->id)
             )
         );
 

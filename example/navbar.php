@@ -6,6 +6,11 @@
 
         use krzysztofzylka\BootstrapGenerator\BootstrapGenerator;
 
-        echo BootstrapGenerator::navbar()->addBrand('Brand');
+        echo BootstrapGenerator::navbar()
+            ->addBrand('Brand')
+            ->addLink('Home', '#', \krzysztofzylka\BootstrapGenerator\enum\Option::Active)
+            ->addLink('Page1')
+            ->addLink('Page disabled', '#', \krzysztofzylka\BootstrapGenerator\enum\Option::Disabled)
+        ;
     ?>
 </div>
