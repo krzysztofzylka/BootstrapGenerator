@@ -15,6 +15,6 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "krzysztofzylka/html-generator": "^1"
+        "krzysztofzylka/html-generator": "^1.0.2"
     }
 }

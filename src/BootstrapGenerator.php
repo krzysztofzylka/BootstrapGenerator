@@ -11,9 +11,21 @@ use krzysztofzylka\BootstrapGenerator\tag\ButtonGroupTag;
 use krzysztofzylka\BootstrapGenerator\tag\ButtonTag;
 use krzysztofzylka\BootstrapGenerator\tag\CardTag;
 use krzysztofzylka\BootstrapGenerator\tag\DropdownTag;
+use krzysztofzylka\BootstrapGenerator\tag\NavbarTag;
 use krzysztofzylka\BootstrapGenerator\tag\PaginationTag;
+use krzysztofzylka\HtmlGenerator\Html;
+use krzysztofzylka\HtmlGenerator\Tag;
 
 class BootstrapGenerator {
+
+    /**
+     * Create container fluid
+     * @param string $value
+     * @return Tag
+     */
+    public static function containerFluid(string $value) : Tag {
+        return Html::div($value)->class('container-fluid');
+    }
 
     /**
      * Create alert
@@ -97,6 +109,15 @@ class BootstrapGenerator {
      */
     public static function pagination(int $pages, string $href, ?int $actualPage = null) : PaginationTag {
         return (new PaginationTag())->setPages($pages)->href($href)->actualPage($actualPage);
+    }
+
+    /**
+     * Create pagination
+     * @param BackgroundColor $backgroundColor
+     * @return NavbarTag
+     */
+    public static function navbar(BackgroundColor $backgroundColor = BackgroundColor::BodyTertiary) : NavbarTag {
+        return (new NavbarTag($backgroundColor));
     }
 
 }
