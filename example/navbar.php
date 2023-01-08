@@ -5,13 +5,19 @@
         include('../vendor/autoload.php');
 
         use krzysztofzylka\BootstrapGenerator\BootstrapGenerator;
+        use krzysztofzylka\BootstrapGenerator\enum\Option;
+        use krzysztofzylka\BootstrapGenerator\tag\navbar\NavbarDropdownTag;
 
         echo BootstrapGenerator::navbar()
             ->addBrand('Brand')
-            ->addLink('Home', '#', \krzysztofzylka\BootstrapGenerator\enum\Option::Active)
+            ->addLink('Home', '#', Option::Active)
             ->addLink('Page1')
-            ->addLink('Page disabled', '#', \krzysztofzylka\BootstrapGenerator\enum\Option::Disabled)
+            ->addLink('Page disabled', '#', Option::Disabled)
             ->setPosition('right')
+            ->addDropdownMenu((new NavbarDropdownTag('Dropdown menu'))
+                ->addLink('link :)')
+                ->addLink('disabled', '#', Option::Disabled)
+                ->addLink('active', '#', Option::Active))
             ->addText('Right text :)')
         ;
     ?>

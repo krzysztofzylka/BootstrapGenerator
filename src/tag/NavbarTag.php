@@ -6,6 +6,8 @@ use krzysztofzylka\BootstrapGenerator\BootstrapGenerator;
 use krzysztofzylka\BootstrapGenerator\enum\BackgroundColor;
 use krzysztofzylka\BootstrapGenerator\enum\Option;
 use krzysztofzylka\BootstrapGenerator\enum\Size;
+use krzysztofzylka\BootstrapGenerator\extra\ExtraOption;
+use krzysztofzylka\BootstrapGenerator\tag\navbar\NavbarDropdownTag;
 use krzysztofzylka\HtmlGenerator\Html;
 use krzysztofzylka\HtmlGenerator\Tag;
 
@@ -79,15 +81,7 @@ class NavbarTag extends Tag {
      */
     public function addLink(string $value, string $href = '#', Option ...$options) : NavbarTag {
         $link = Html::a($value, $href)->class('nav-link');
-
-        if (in_array(Option::Active, $options)) {
-            $link->class('active')->aria('current', 'page');
-        }
-
-        if (in_array(Option::Disabled, $options)) {
-            $link->class('disabled')->clearAttribute('href');
-        }
-
+        ExtraOption::action($link, $options);
         $this->_addElement($link);
 
         return $this;
@@ -100,6 +94,28 @@ class NavbarTag extends Tag {
      */
     public function addText(string $value) : NavbarTag {
         $this->_addElement(Html::span($value)->class('navbar-text'));
+
+        return $this;
+    }
+
+    /**
+     * Add dropdown menu
+     * @param NavbarDropdownTag $navbarDropdownTag
+     * @return $this
+     */
+    public function addDropdownMenu(NavbarDropdownTag $navbarDropdownTag) : NavbarTag {
+        $this->_addElement($navbarDropdownTag);
+
+        return $this;
+    }
+
+    /**
+     * Add custom html code
+     * @param string|Tag $html
+     * @return $this
+     */
+    public function addCustom(string|Tag $html) : NavbarTag {
+        $this->_addElement((string)$html);
 
         return $this;
     }

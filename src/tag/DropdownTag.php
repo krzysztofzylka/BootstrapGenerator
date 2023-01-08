@@ -4,6 +4,7 @@ namespace krzysztofzylka\BootstrapGenerator\tag;
 
 use krzysztofzylka\BootstrapGenerator\enum\Option;
 use krzysztofzylka\BootstrapGenerator\enum\ThemeColor;
+use krzysztofzylka\BootstrapGenerator\extra\ExtraOption;
 use krzysztofzylka\HtmlGenerator\Html;
 use krzysztofzylka\HtmlGenerator\Tag;
 
@@ -48,15 +49,7 @@ class DropdownTag extends Tag {
      */
     public function addLink(string $value, string $href = '#', Option ...$options) : DropdownTag {
         $a = Html::a($value, $href)->class('dropdown-item');
-
-        if (in_array(Option::Disabled, $options)) {
-            $a->class('disabled');
-        }
-
-        if (in_array(Option::Active, $options)) {
-            $a->class('active')->attribute('aria-current', 'true');
-        }
-
+        ExtraOption::action($a, $options);
         $this->dropdownItems[] = Html::tag('li')->value($a);
 
         return $this;
